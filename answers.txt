@@ -1,0 +1,47 @@
+1. On the file shut_the_box.js you would write after line 76:
+if (box_score === 0){
+    alert(“You reached score 0!”);
+}
+
+2. On the file scores.php you would write on line 7:
+if ((!isset($_SESSION['loggedin']) && (!isset($_COOKIE['username'])){
+    header('Location: welcome.php');
+    exit;
+}
+
+3. On the file shut_the_box.php you would write on line 56:
+<span id="answer"></span>
+On the file style.css you would write on line 10:
+#answer {
+    color: green;
+}
+
+4. On the file score.php you should write after line 5:
+
+$allInfo =  isset($_POST['username']) &&
+            isset($_POST['box_score']);
+
+if ($allInfo){
+    update_database (isset($_POST['username'])
+                    isset($_POST['box_score']));
+}
+
+function update_database($username, $box_score){
+
+    $db = new SQLite3('database.db');
+
+    $statement  = 'CREATE TABLE IF NOT EXISTS users(';
+    $statement .= 'name TEXT,                       ';
+    $statement .= score INTEGER)                    ';
+
+    $db->exec($statement);
+
+    $statement  = 'INSERT INTO users ';
+    $statement .= '(name, score) ';
+    $statement .= 'VALUES ';
+    $statement .= "($username, $score)";
+
+    $db->exec($statement);
+
+    $db->close();
+}
